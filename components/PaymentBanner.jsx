@@ -1,6 +1,6 @@
 import React from "react";
 import { LockFill } from "react-bootstrap-icons";
-import paymentLogos from "../Assets/cards/cards.png";
+import paymentLogos from "../public/Assets/cards/cards.png";
 
 const PaymentBanner = () => {
   return (
@@ -8,10 +8,15 @@ const PaymentBanner = () => {
       <div className="banner h-full w-full max-w-8xl flex items-center justify-evenly text-gray-500">
         <div className="h-3/4 flex flex-col items-center justify-start space-y-3 md:space-y-2 pt-1 pb-2 2xl:mt-3">
           <div className="uppercase font-bold text-lg md:text-base underline flex items-center justify-center space-x-1">
-            <LockFill className="text-gray-500 transform -translate-y-px" /> <span>secured payment</span>
+            <LockFill className="text-gray-500 transform -translate-y-px" />{" "}
+            <span>secured payment</span>
           </div>
           <div className="h-6">
-            <img src={paymentLogos} alt="" className="object-fit h-full w-full" />
+            <img
+              src={paymentLogos}
+              alt=""
+              className="object-fit h-full w-full"
+            />
           </div>
         </div>
         <span className="hidden md:block w-px h-1/2 bg-gray-300"></span>

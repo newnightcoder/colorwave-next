@@ -1,9 +1,8 @@
 import React from "react";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
-import "../Styles/form.css";
-import "../Styles/_variables.css";
-import useWindowSize from "../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
+// import "../styles/Form.module.css";
 
 const Form = ({
   inputFirstName,
@@ -30,7 +29,10 @@ const Form = ({
   return (
     <div
       id="userInfo-form"
-      style={{ height: width < 768 ? responsiveHeight - 192 : "100%", visibility: formOpen ? "visible" : "hidden" }}
+      style={{
+        height: width < 768 ? responsiveHeight - 192 : "100%",
+        visibility: formOpen ? "visible" : "hidden",
+      }}
       className="form-container w-full md:w-3/5 relative flex flex-col items-center justify-start space-y-2 md:space-y-0 transition duration-300 text-gray-900 bg-sound"
     >
       <div
@@ -50,14 +52,19 @@ const Form = ({
       >
         <div className="h-full w-full flex flex-col items-center justify-center md:items-end">
           <div
-            style={{ height: width < 768 ? "calc(100% - 20px)" : "max-content" }}
+            style={{
+              height: width < 768 ? "calc(100% - 20px)" : "max-content",
+            }}
             className="w-full flex flex-col items-center justify-center overflow-hidden"
           >
             <div className="h-max w-11/12 md:w-full flex flex-col items-center justify-start md:items-end overflow-y-auto scrollbar-cart pb-4 md:pt-2 md:pr-5">
               <form className="form-solid h-max w-11/12 md:w-10/12 flex flex-col items-center justify-start space-y-2 text-gray-900">
                 <div className="w-full flex flex-col md:flex-row space-y-2 md:space-x-2 md:space-y-0">
                   <div className="flex flex-col w-full md:w-1/2">
-                    <label className="hidden md:block w-max text-left px-1" htmlFor="firstName">
+                    <label
+                      className="hidden md:block w-max text-left px-1"
+                      htmlFor="firstName"
+                    >
                       First Name
                     </label>
                     <input
@@ -73,7 +80,10 @@ const Form = ({
                     </span>
                   </div>
                   <div className="flex flex-col w-full md:w-1/2">
-                    <label className="hidden md:block w- text-left px-1" htmlFor="lastName">
+                    <label
+                      className="hidden md:block w- text-left px-1"
+                      htmlFor="lastName"
+                    >
                       Last Name
                     </label>
                     <input
@@ -90,7 +100,10 @@ const Form = ({
                   </div>
                 </div>
                 <div className="w-full flex flex-col ">
-                  <label className="hidden md:block w-full text-left px-1" htmlFor="email">
+                  <label
+                    className="hidden md:block w-full text-left px-1"
+                    htmlFor="email"
+                  >
                     Email
                   </label>
                   <input
@@ -101,10 +114,15 @@ const Form = ({
                     value={inputEmail}
                     onChange={handleInput}
                   />
-                  <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorEmail}</span>
+                  <span className="input-error w-full text-sm text-left text-black font-bold pl-1">
+                    {errorEmail}
+                  </span>
                 </div>
                 <div className="w-full flex flex-col ">
-                  <label className="hidden md:block w-full text-left px-1" htmlFor="address">
+                  <label
+                    className="hidden md:block w-full text-left px-1"
+                    htmlFor="address"
+                  >
                     Address
                   </label>
                   <input
@@ -115,11 +133,16 @@ const Form = ({
                     value={inputAddress}
                     onChange={handleInput}
                   />
-                  <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorAddress}</span>
+                  <span className="input-error w-full text-sm text-left text-black font-bold pl-1">
+                    {errorAddress}
+                  </span>
                 </div>
                 <div className="w-full flex flex-col md:flex-row space-y-2 md:space-x-2 md:space-y-0">
                   <div className="flex flex-col w-full md:w-2/3 ">
-                    <label className="hidden md:block w-full text-left px-1" htmlFor="address">
+                    <label
+                      className="hidden md:block w-full text-left px-1"
+                      htmlFor="address"
+                    >
                       City
                     </label>
                     <input
@@ -136,7 +159,10 @@ const Form = ({
                     </span>
                   </div>
                   <div className="flex flex-col w-full md:w-1/3 ">
-                    <label className="hidden md:block w-full text-left px-1" htmlFor="address">
+                    <label
+                      className="hidden md:block w-full text-left px-1"
+                      htmlFor="address"
+                    >
                       Zip Code
                     </label>
                     <input
@@ -154,7 +180,10 @@ const Form = ({
                   </div>
                 </div>
                 <div className="w-full flex flex-col ">
-                  <label className="hidden md:block w-full text-left px-1" htmlFor="phone">
+                  <label
+                    className="hidden md:block w-full text-left px-1"
+                    htmlFor="phone"
+                  >
                     Phone number
                   </label>
                   <input
@@ -165,7 +194,9 @@ const Form = ({
                     value={inputPhone}
                     onChange={handleInput}
                   />
-                  <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorPhone}</span>
+                  <span className="input-error w-full text-sm text-left text-black font-bold pl-1">
+                    {errorPhone}
+                  </span>
                 </div>
                 <div className="flex flex-col items-start justify-center self-start pt-1">
                   <div className="flex items-center justify-center space-x-2">
@@ -178,7 +209,10 @@ const Form = ({
                       onChange={handleInput}
                     />
                     <p>
-                      I have read and I accept all <span className="capitalize underline">terms and services</span>
+                      I have read and I accept all{" "}
+                      <span className="capitalize underline">
+                        terms and services
+                      </span>
                     </p>
                   </div>
                   <span className="input-error w-full text-sm text-left text-black font-bold pl-1">

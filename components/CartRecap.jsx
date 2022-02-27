@@ -3,9 +3,16 @@ import AnimateHeight from "react-animate-height";
 import { EyeFill, PlayFill, Trash } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { MobileRecap } from ".";
-import useWindowSize from "../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 
-const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice, handleDeleteCart }) => {
+const CartRecap = ({
+  formValidated,
+  formOpen,
+  toggleForm,
+  handleForm,
+  totalPrice,
+  handleDeleteCart,
+}) => {
   const items = useSelector((state) => state?.cart.items);
   const { height, width } = useWindowSize();
   const [itemsDivHeight, setItemsDivHeight] = useState(0);
@@ -71,13 +78,25 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
                   >
                     <div
                       style={{
-                        backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                        backgroundColor: item.product.categories.find(
+                          (x) => x.name === "limited"
+                        )
+                          ? "black"
+                          : "white",
                       }}
                     >
-                      <img src={item.product.media.source} alt="" className="object-cover h-20 w-full" />
+                      <img
+                        src={item.product.media.source}
+                        alt=""
+                        className="object-cover h-20 w-full"
+                      />
                     </div>
-                    <div className="w-1/3 text-left text-sm pl-2 whitespace-nowrap truncate">{item.product.name}</div>
-                    <div className="w-1/3 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
+                    <div className="w-1/3 text-left text-sm pl-2 whitespace-nowrap truncate">
+                      {item.product.name}
+                    </div>
+                    <div className="w-1/3 text-right text-sm pr-2">
+                      {item.product.price.formatted}&nbsp;€
+                    </div>
                   </div>
                 ))}
               </div>
@@ -108,7 +127,9 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
             </span>
             &nbsp;&#58;
           </span>
-          <span className="w-1/5 text-right whitespace-nowrap">{totalPrice}&nbsp;€</span>
+          <span className="w-1/5 text-right whitespace-nowrap">
+            {totalPrice}&nbsp;€
+          </span>
         </div>
       </div>
 
@@ -166,7 +187,10 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
           )}
         </div>
       )}
-      <MobileRecap openMobileRecap={openMobileRecap} toggleMobileRecap={toggleMobileRecap} />
+      <MobileRecap
+        openMobileRecap={openMobileRecap}
+        toggleMobileRecap={toggleMobileRecap}
+      />
     </div>
   );
 };

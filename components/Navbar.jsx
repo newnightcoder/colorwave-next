@@ -1,18 +1,16 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { Link, NavLink } from "react-router-dom";
-import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
-import { toggleSearchModal } from "../../Redux/Actions/shop.action";
-import useWindowSize from "../../utils/useWindowSize";
+import { toggleCartDrawer } from "../store/actions/cart.action";
+import { toggleSearchModal } from "../store/actions/shop.action";
 
 const Navbar = () => {
   const items = useSelector((state) => state?.cart.items);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { height, width } = useWindowSize();
+  const router = useRouter();
 
   const toggleMenu = () => {
     return setMenuOpen((menuOpen) => !menuOpen);
@@ -28,7 +26,7 @@ const Navbar = () => {
     <>
       <div
         style={{ zIndex: 3000 }}
-        className="h-16 md:h-20 w-screen bg-black shadow-lg fixed top-0 font-cabin border-b-8 border-yellow-300 shadow-lg shadow-yellow-300"
+        className="h-16 md:h-20 w-screen bg-black fixed top-0 font-cabin border-b-8 border-yellow-300 shadow-lg"
       >
         <div className="nav-container h-full w-full mx-auto px-4 2xl:px-8">
           {/* 
@@ -55,7 +53,12 @@ const Navbar = () => {
                   stroke="currentColor"
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
                 {/* X CLOSE ICON. Heroicon name: outline/x    Menu open: "block", Menu closed: "hidden" */}
                 <svg
@@ -67,20 +70,27 @@ const Navbar = () => {
                   stroke="currentColor"
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
-              <NavLink to="/" className="w-max group absolute inset-x-0 m-auto md:static">
-                <div className="relative">
-                  <span
-                    className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
-                    aria-hidden="true"
-                  ></span>
-                  <h1 className="relative text-lg transition-color duration-300 text-black group-hover:text-white px-1">
-                    COLORWAVE
-                  </h1>
-                </div>
-              </NavLink>
+              <Link href="/">
+                <a className="w-max group absolute inset-x-0 m-auto md:static">
+                  <div className="relative">
+                    <span
+                      className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
+                      aria-hidden="true"
+                    ></span>
+                    <h1 className="relative text-lg transition-color duration-300 text-black group-hover:text-white px-1">
+                      COLORWAVE
+                    </h1>
+                  </div>
+                </a>
+              </Link>
             </div>
             {/* <!-- END MOBILE MENU BUTTON--> */}
 
@@ -91,28 +101,24 @@ const Navbar = () => {
             <div className="w-full flex items-center justify-between px-8 2xl:pl-12 2xl:pr-8">
               {/* <!-- END DESKTOP NAVLINKS CONTAINER --> */}
               <nav className="hidden md:flex items-center justify-center lg:space-x-4">
-                <NavLink
-                  to="/shop"
-                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
-                >
-                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
-                  <span className="capitalize">Products</span>
-                </NavLink>
-                <NavLink
-                  to="/categories/limited"
-                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
-                >
-                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
-
-                  <span className="capitalize">limited</span>
-                </NavLink>
-                <NavLink
-                  to="/promotional"
-                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
-                >
-                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
-                  <span>Promotional</span>
-                </NavLink>
+                <Link href="/shop">
+                  <a className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2">
+                    <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+                    <span className="capitalize">Products</span>
+                  </a>
+                </Link>
+                <Link href="/categories/limited">
+                  <a className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2">
+                    <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+                    <span className="capitalize">limited</span>
+                  </a>
+                </Link>
+                <Link href="/promotional">
+                  <a className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2">
+                    <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+                    <span>Promotional</span>
+                  </a>
+                </Link>
               </nav>
               {/* <!-- END DESKTOP NAVLINKS CONTAINER --> */}
 
@@ -130,16 +136,23 @@ const Navbar = () => {
                   className="h-10/12 w-max relative group flex items-center justify-center space-x-2 text-gray-300"
                 >
                   <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
-                  <span className="hidden md:inline-block group-hover:text-white">Search</span>
-                  <Search size={18} className="text-white transition-color duration-300 group-hover:text-blue-500" />
+                  <span className="hidden md:inline-block group-hover:text-white">
+                    Search
+                  </span>
+                  <Search
+                    size={18}
+                    className="text-white transition-color duration-300 group-hover:text-blue-500"
+                  />
                 </button>
                 {/* Checkout btn*/}
-                {location.pathname !== "/cart" && (
+                {router.pathname !== "/cart" && (
                   <button
                     onClick={() => dispatch(toggleCartDrawer())}
                     className="w-max h-max relative flex items-center justify-center space-x-1 z-10 text-gray-300 text-base group"
                   >
-                    <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
+                    <span className="hidden md:block text-gray-300 group-hover:text-white">
+                      Checkout
+                    </span>
                     <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -204,45 +217,47 @@ const Navbar = () => {
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link
-              onClick={toggleMenu}
-              to="/"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
-              aria-current="page"
-            >
-              Home
-            </Link>
-            <Link
-              onClick={toggleMenu}
-              to="/shop"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
-              aria-current="page"
-            >
-              Products
-            </Link>
-
-            <Link
-              onClick={toggleMenu}
-              to="/categories/limited"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
-            >
-              limited
-            </Link>
-
-            <Link
-              onClick={toggleMenu}
-              to="/promotional"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
-            >
-              Promotional
-            </Link>
-            {location.pathname !== "/cart" && (
-              <Link
+            <Link href="/" aria-current="page">
+              <a
                 onClick={toggleMenu}
-                to="/cart"
                 className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
               >
-                Cart
+                Home
+              </a>
+            </Link>
+            <Link href="/shop" aria-current="page">
+              <a
+                onClick={toggleMenu}
+                className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              >
+                Products
+              </a>
+            </Link>
+            <Link href="/categories/limited">
+              <a
+                onClick={toggleMenu}
+                className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              >
+                limited
+              </a>
+            </Link>
+
+            <Link href="/promotional">
+              <a
+                onClick={toggleMenu}
+                className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              >
+                Promotional
+              </a>
+            </Link>
+            {router.pathname !== "/cart" && (
+              <Link href="/cart">
+                <a
+                  onClick={toggleMenu}
+                  className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+                >
+                  Cart
+                </a>
               </Link>
             )}
           </div>

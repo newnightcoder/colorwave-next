@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Search, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import { ProductCard } from ".";
-import { toggleSearchModal } from "../Redux/Actions/shop.action";
-import useWindowSize from "../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
+import { toggleSearchModal } from "../store/actions/shop.action";
 
 const SearchModal = () => {
   const open = useSelector((state) => state?.shop.searchModalOpen);
   const items = useSelector((state) => state?.shop.shop);
   const [searchTerm, setSearchTerm] = useState("");
   const { height, width } = useWindowSize();
-  const searchedItems = items?.filter((item) => item.name.toLowerCase().includes(searchTerm));
-  const history = useHistory();
+  const searchedItems = items?.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm)
+  );
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
@@ -21,7 +21,11 @@ const SearchModal = () => {
 
   return (
     <div
-      style={{ opacity: open ? 1 : 0, zIndex: open ? 5000 : -1, backgroundColor: "rgba(0,0,0,.95)" }}
+      style={{
+        opacity: open ? 1 : 0,
+        zIndex: open ? 5000 : -1,
+        backgroundColor: "rgba(0,0,0,.95)",
+      }}
       className="h-screen w-screen fixed inset-0 flex flex-col items-center overflow-x-hidden text-white pt-2 pb-8 px-2 md:px-8 transition-opacity duration-700 font-cabin"
     >
       <div className="h-max w-full flex flex-col items-center justify-start space-y-8 py-4">
@@ -59,10 +63,15 @@ const SearchModal = () => {
             </button>
           </div>
           <div
-            style={{ visibility: open && searchTerm.length > 1 ? "visible" : "hidden" }}
+            style={{
+              visibility: open && searchTerm.length > 1 ? "visible" : "hidden",
+            }}
             className="block text-sm uppercase text-gray-300 pt-2"
           >
-            <span className="text-blue-500 font-bold underline">{searchedItems?.length}</span> results
+            <span className="text-blue-500 font-bold underline">
+              {searchedItems?.length}
+            </span>{" "}
+            results
           </div>
         </div>
       </div>
@@ -71,7 +80,10 @@ const SearchModal = () => {
         style={{ height: "calc(100vh - 200px)" }}
         className="h-max w-10/12 grid place-items-center gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 px-6 pb-6 overflow-y-auto scrollbar-search"
       >
-        {searchTerm.length > 1 && searchedItems?.map((item, i) => <ProductCard key={i + 1} item={item} />)}
+        {searchTerm.length > 1 &&
+          searchedItems?.map((item, i) => (
+            <ProductCard key={i + 1} item={item} />
+          ))}
       </div>
     </div>
   );

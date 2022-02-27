@@ -1,0 +1,10 @@
+export { default as img1 } from "./1.png";
+export { default as imgMob1 } from "./1mob.png";
+export { default as img2 } from "./2.png";
+export { default as imgMob2 } from "./2mob.png";
+export { default as img3 } from "./3.png";
+export { default as imgMob3 } from "./3mob.png";
+export { default as img4 } from "./4.png";
+export { default as imgMob4 } from "./4mob.png";
+export { default as imgPromote1 } from "./5.png";
+export { default as imgPromote2 } from "./6.png";

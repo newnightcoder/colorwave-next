@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import AnimateHeight from "react-animate-height";
-import visa from "../Assets/cards/visa.png";
-import "../Styles/_variables.css";
-import useWindowSize from "../utils/useWindowSize";
+import visa from "../public/assets/cards/visa.png";
 
 const CardInfo = ({ formValidated }) => {
-  const { height, width } = useWindowSize();
   const [cardInfoHeight, setCardInfoHeight] = useState(0);
 
   const toggleCardInfo = () => {
@@ -20,11 +17,19 @@ const CardInfo = ({ formValidated }) => {
       className="h-auto w-full opacity-0 absolute bottom-0 md:relative text-sm md:text-base text-black bg-yellow-300 md:border md:border-gray-100 flex flex-col items-center justify-center space-y-2 z-40 px-2 py-3 md:py-2"
     >
       <div className="hidden md:flex flex-col items-center justify-center">
-        <button className="w-full flex items-center justify-center space-x-3" onClick={toggleCardInfo}>
-          <span className="uppercase underline font-bold text-center">Please use this credit card</span>
+        <button
+          className="w-full flex items-center justify-center space-x-3"
+          onClick={toggleCardInfo}
+        >
+          <span className="uppercase underline font-bold text-center">
+            Please use this credit card
+          </span>
 
           <div
-            style={{ animation: cardInfoHeight === 0 ? "bounceRight 1s infinite" : "none" }}
+            style={{
+              animation:
+                cardInfoHeight === 0 ? "bounceRight 1s infinite" : "none",
+            }}
             className="h-6 w-9 rounded"
           >
             <img src={visa} alt="" className="object-cover h-full w-full" />
@@ -48,7 +53,9 @@ const CardInfo = ({ formValidated }) => {
         </AnimateHeight>
       </div>
       <div className="md:hidden flex flex-col items-center justify-center space-y-2">
-        <h3 className="uppercase underline rounded-sm font-bold text-center text-lg">Please use this credit card</h3>
+        <h3 className="uppercase underline rounded-sm font-bold text-center text-lg">
+          Please use this credit card
+        </h3>
         <div className="h-max w-max flex flex-col items-start justify-center">
           <div className="flex items-center justify-center space-x-1 transform -translate-x-px">
             <div className="h-6 w-9 rounded">

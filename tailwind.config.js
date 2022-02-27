@@ -18,11 +18,7 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("tailwindcss/colors"),
-    require("autoprefixer"),
-  ],
+  plugins: ["@tailwindcss/forms", "tailwindcss/colors", "autoprefixer"],
   variants: {
     scale: ["hover", "group-hover"],
     scaleX: ["hover", "group-hover"],

@@ -1,12 +1,17 @@
+import Link from "next/link";
 import React from "react";
 import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import "../Styles/_variables.css";
-import useWindowSize from "../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 
-const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, handleDeleteCart, formOpen }) => {
+const CartContainer = ({
+  handleRemoveOne,
+  handleAddToCart,
+  handleDeleteItem,
+  handleDeleteCart,
+  formOpen,
+}) => {
   const { height, width } = useWindowSize();
   const responsiveHeight = use100vh();
   const items = useSelector((state) => state?.cart.items);
@@ -25,13 +30,17 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
     <div className="cart-container h-full w-full relative flex flex-col items-center justify-start md:items-end space-y-4 text-gray-900 bg-sound">
       {items.length === 0 ? (
         <div className="fixed z-50 inset-0 m-auto w-max flex flex-col items-center justify-center space-y-1">
-          <h1 className="text-lg md:text-xl uppercase">YOUR CART IS EMPTY...</h1>
+          <h1 className="text-lg md:text-xl uppercase">
+            YOUR CART IS EMPTY...
+          </h1>
           <Link
-            to="/shop"
+            href="/shop"
             className="flex items-center justify-center space-x-1 text-blue-500 hover:underline hover:font-bold"
           >
-            <ChevronDoubleLeft size={12} />
-            <span className="text-base uppercase">go back to the shop</span>
+            <a>
+              <ChevronDoubleLeft size={12} />
+              <span className="text-base uppercase">go back to the shop</span>
+            </a>
           </Link>
         </div>
       ) : (
@@ -41,11 +50,13 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
             className="w-full max-w-4xl flex flex-col items-start justify-center md:flex-row md:items-center md:justify-between space-y-2 md:space-x-0 pt-4 md:pt-0 pl-4 md:pl-10"
           >
             <div className="w-max relative md:hidden">
-              <h2 className="text-center text-xl md:text-2xl uppercase px-3 md:px-6">Your cart</h2>
+              <h2 className="text-center text-xl md:text-2xl uppercase px-3 md:px-6">
+                Your cart
+              </h2>
               <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
             </div>
             <Link
-              to="/shop"
+              href="/shop"
               className="flex items-center justify-center space-x-1 text-gray-900 hover:underline hover:font-bold group md:pl-6 md:pt-2"
             >
               <ChevronDoubleLeft size={12} />
@@ -67,13 +78,19 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
               {items.map((item, i) => (
                 <div
                   key={i}
-                  style={{ animation: `750ms fadeInTop ${100 + i * 50}ms forwards` }}
+                  style={{
+                    animation: `750ms fadeInTop ${100 + i * 50}ms forwards`,
+                  }}
                   className="item opacity-0 h-28 md:h-44 w-11/12 flex items-center justify-start space-x-1 md:space-x-6 pr-1 md:px-0 bg-white shadow"
                 >
                   <div
                     className="h-full w-2/5 border-r border-gray-100"
                     style={{
-                      backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                      backgroundColor: item.product.categories.find(
+                        (x) => x.name === "limited"
+                      )
+                        ? "black"
+                        : "white",
                     }}
                   >
                     <img
@@ -84,7 +101,9 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
                   </div>
                   <div className="details h-full w-2/5 flex items-center justify-center space-x-2">
                     <div className="h-full w-full flex flex-col items-start justify-center space-y-1 md:space-y-2 pl-2 md:pl-1">
-                      <div className="capitalize w-full whitespace-nowrap truncate">{item.product.name}</div>
+                      <div className="capitalize w-full whitespace-nowrap truncate">
+                        {item.product.name}
+                      </div>
                       <div>{item.product.price.formatted} €</div>
                       <div className="w-max flex items-center justify-center space-x-1">
                         <div className=" w-max flex items-center justify-between space-x-1">

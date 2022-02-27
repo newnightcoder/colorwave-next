@@ -1,9 +1,6 @@
 import React from "react";
-import img1 from "../../Assets/categories/banner-1000-controller.png";
-import img3 from "../../Assets/categories/banner-1000-iphone.png";
-import img2 from "../../Assets/categories/banner-1000-mic.png";
-import img4 from "../../Assets/categories/banner-1000-mouse.png";
-import useWindowSize from "../../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
+import { img1, img2, img3, img4 } from "../public/assets/categories";
 import CategoryCard from "./CategoryCard";
 
 const CategoriesGrid = () => {

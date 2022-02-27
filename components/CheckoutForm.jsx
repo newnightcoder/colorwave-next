@@ -1,9 +1,13 @@
-import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import {
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import { use100vh } from "react-div-100vh";
 import { useDispatch, useSelector } from "react-redux";
 import { CardInfo, PaymentBanner } from ".";
-import useWindowSize from "../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 
 const CheckoutForm = ({ formValidated, clientSecret }) => {
   const elements = useElements();

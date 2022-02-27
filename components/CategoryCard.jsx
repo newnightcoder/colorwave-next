@@ -1,10 +1,19 @@
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import useWindowSize from "../../utils/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 
-const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }) => {
+const CategoryCard = ({
+  categoryTitle,
+  img,
+  bgColor,
+  btnColor,
+  btnText,
+  mirror,
+}) => {
   const { height, width } = useWindowSize();
-  const { pathname } = useLocation();
+  const { pathname } = useRouter();
 
   return (
     <div
@@ -12,7 +21,7 @@ const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }
       style={{ background: `${bgColor}` }}
     >
       {mirror && width < 768 && (
-        <img
+        <Image
           src={img}
           alt=""
           style={{ transform: "translateX(-25%)" }}
@@ -21,13 +30,25 @@ const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }
       )}
       <div
         style={{
-          left: mirror && width < 500 ? "55%" : mirror && width < 768 ? "65%" : !mirror && width < 500 ? "7.5%" : "15%",
+          left:
+            mirror && width < 500
+              ? "55%"
+              : mirror && width < 768
+              ? "65%"
+              : !mirror && width < 500
+              ? "7.5%"
+              : "15%",
         }}
         className="absolute top-50 flex flex-col justify-center text-black z-10"
       >
-        <span className="w-full text-lg text-center uppercase">{categoryTitle}</span>
+        <span className="w-full text-lg text-center uppercase">
+          {categoryTitle}
+        </span>
         <Link
-          to={{ pathname: `/categories/${categoryTitle}`, state: { from: pathname } }}
+          href={{
+            pathname: `/categories/${categoryTitle}`,
+            state: { from: pathname },
+          }}
           className="w-32 rounded-sm text-center shadow-md hover:shadow-sm py-2"
           style={{
             background: `${btnColor}`,
@@ -40,10 +61,12 @@ const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }
         </Link>
       </div>
       {(!mirror || width > 768) && (
-        <img
+        <Image
           src={img}
           alt=""
-          style={{ transform: width > 768 ? "translateX(15%)" : "translateX(22%)" }}
+          style={{
+            transform: width > 768 ? "translateX(15%)" : "translateX(22%)",
+          }}
           className="object-contain h-full w-full relative top-0"
         />
       )}
